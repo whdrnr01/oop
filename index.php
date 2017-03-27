@@ -16,4 +16,5 @@ class User {
 
 $user = new User;
 
-echo $user->avatar(100);
+// echo $user->avatar(100);
+var_dump($user->username);
