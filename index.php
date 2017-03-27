@@ -1,20 +1,24 @@
 <?php
 
 class User {
-	public $username = 'cookie';
+	protected $email;
 
-	public function fullName()
+	public function setEmail($email)
 	{
-		return 'Chris cookie jeong';
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			return;
+		}
+
+		$this->email = $email;
 	}
 
-	public function avatar( $size = 60 )
+	public function getEmail()
 	{
-		return $size;
+		return strtolower($this->email);
 	}
 }
 
 $user = new User;
+$user->setEmail('COOKIE@sample.com');
 
-// echo $user->avatar(100);
-var_dump($user->username);
+var_dump($user->getEmail());
