@@ -1,24 +1,27 @@
 <?php
 
-class User {
-	protected $email;
-
-	public function setEmail($email)
+class Validator 
+{
+	protected $errors = [];
+	public function validate($data, $rules)
 	{
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			return;
-		}
-
-		$this->email = $email;
+		$this->errors[] = 'The email is required.';
 	}
 
-	public function getEmail()
+	public function fails()
 	{
-		return strtolower($this->email);
+		return !empty($this->errors);
+	}
+
+	public function getErrors()
+	{
+		return $this->errors;
 	}
 }
 
-$user = new User;
-$user->setEmail('COOKIE@sample.com');
+$validator = new Validator;
+$validator->validate([''], ['required']);
 
-var_dump($user->getEmail());
+if ($validator->fails()) {
+	die ('failed');
+}
