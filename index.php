@@ -1,27 +1,23 @@
 <?php
 
-class Validator 
+class Model 
 {
-	protected $errors = [];
-	public function validate($data, $rules)
+	protected $dates = [];	
+	public function __get($property)
 	{
-		$this->errors[] = 'The email is required.';
-	}
+		if (in_array($property, $this->dates)) {
+			return new DateTime($this->{$property});
+		}
 
-	public function fails()
-	{
-		return !empty($this->errors);
-	}
-
-	public function getErrors()
-	{
-		return $this->errors;
+		return $this->{$property};
 	}
 }
 
-$validator = new Validator;
-$validator->validate([''], ['required']);
-
-if ($validator->fails()) {
-	die ('failed');
+class Comment extends Model
+{
+	protected $dates = ['createdAt'];
+	protected $createdAt = '2016-01-01 12:30:00';
 }
+
+$comment = new Comment;
+var_dump($comment->createdAt);
