@@ -1,23 +1,13 @@
 <?php
+// require 'Models/User.php';
+use Todo\Models\Task;
+use Todo\Models\User;
 
-class Model 
-{
-	protected $dates = [];	
-	public function __get($property)
-	{
-		if (in_array($property, $this->dates)) {
-			return new DateTime($this->{$property});
-		}
+require_once 'vendor/autoload.php';
 
-		return $this->{$property};
-	}
-}
+$task = new Task;
+$user = new User;
 
-class Comment extends Model
-{
-	protected $dates = ['createdAt'];
-	protected $createdAt = '2016-01-01 12:30:00';
-}
-
-$comment = new Comment;
-var_dump($comment->createdAt);
+var_dump($user);
+// $user = new User;
+// var_dump($user->username);
