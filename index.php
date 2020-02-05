@@ -1,7 +1,8 @@
 <?php
-include_once "class/abstract/paymenttypes.abstract.php";
-include_once "class/BuyProduct.class.php";
+use App\Game\Player\Player;
+use App\Game\GameController;
 
-$buyProduct = new BuyProduct();
+include_once __DIR__."/vendor/autoload.php";
 
-echo $buyProduct->getPayment();
+$player = new Player();
+$gamecontroller = new GameController();
